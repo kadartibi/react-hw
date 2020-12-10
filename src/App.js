@@ -2,6 +2,7 @@ import React from "react";
 import {Route, BrowserRouter as Router } from "react-router-dom";
 import './App.css';
 import Home from "./pages/Home";
+import {ProductProvider} from "./components/context/ProductsContext";
 
 //Datepicker
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -11,9 +12,11 @@ export default function App() {
   return (
     <div className="App">
       <Router>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Route exact path="/" component={Home}/>
-        </MuiPickersUtilsProvider>
+        <ProductProvider>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Route exact path="/" component={Home}/>
+          </MuiPickersUtilsProvider>
+        </ProductProvider>
       </Router>
     </div>
   );
