@@ -3,6 +3,7 @@ import {Route, BrowserRouter as Router } from "react-router-dom";
 import './App.css';
 import Home from "./pages/Home";
 import {ProductProvider} from "./components/context/ProductsContext";
+import { CookiesProvider } from 'react-cookie';
 
 //Datepicker
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -12,11 +13,13 @@ export default function App() {
   return (
     <div className="App">
       <Router>
-        <ProductProvider>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Route exact path="/" component={Home}/>
-          </MuiPickersUtilsProvider>
-        </ProductProvider>
+        <CookiesProvider>
+          <ProductProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Route exact path="/" component={Home}/>
+            </MuiPickersUtilsProvider>
+          </ProductProvider>
+        </CookiesProvider>
       </Router>
     </div>
   );
